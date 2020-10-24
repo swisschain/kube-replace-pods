@@ -6,9 +6,6 @@ set -e
 echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
 export KUBECONFIG=/tmp/config
 kubectl config current-context
-echo "$GIT_USER_SSH_KEY" | base64 --decode > /tmp/key
-ssh-agent bash -c "ssh-add /tmp/key; git clone ${GIT_SSH_REPOSITRY} ./GIT_SSH_REPOSITRY";
-cd ./GIT_SSH_REPOSITRY
 echo YAML_FILE=${YAML_FILE}
 grep -i image: ${YAML_FILE}
 echo BUILD_NUMBER_PREFIX=${BUILD_NUMBER_PREFIX}
@@ -27,6 +24,5 @@ git config --global user.email "${GIT_EMAIL}"
 git add -A
 git diff --cached
 git commit -m "Pods Sirius Settings "${TAG}
-git push
+git push --force
 git log -2
-
