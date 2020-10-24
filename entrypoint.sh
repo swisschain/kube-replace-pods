@@ -19,10 +19,10 @@ sed -E "s/image: .+$/image: ${DOCKER_IMAGE_SLASH}:${TAG}/" ${YAML_FILE} > ${YAML
 mv ${YAML_FILE}.tmp ${YAML_FILE}
 grep -i image: ${YAML_FILE}
 cat .git/config
-git config --global user.name "GIT_USER"
-git config --global user.email "GIT_EMAIL"
-git log -3
+git config --global user.name "${GIT_USER}"
+git config --global user.email "${GIT_EMAIL}"
 git add -A
 git diff --cached
 git commit -m "Pods Sirius Settings "${TAG}
 git push
+git log -2
