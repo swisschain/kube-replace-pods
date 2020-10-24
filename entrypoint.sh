@@ -8,6 +8,7 @@ export KUBECONFIG=/tmp/config
 kubectl config current-context
 echo "$GIT_USER_SSH_KEY" | base64 --decode > /tmp/key
 chmod 400 /tmp/key
+if [ ! -n "$(grep "^github.com " ~/.ssh/known_hosts)" ]; then ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null; fi;
 ssh-agent bash -c "ssh-add /tmp/key; git clone ${GIT_SSH_REPOSITRY} ./GIT_SSH_REPOSITRY";
 cd ./GIT_SSH_REPOSITRY
 echo YAML_FILE=${YAML_FILE}
