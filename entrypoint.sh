@@ -26,3 +26,4 @@ git diff --cached
 git commit -m "Pods Sirius Settings "${TAG}
 git push --force
 git log -2
+kubectl replace -f ${YAML_FILE}
