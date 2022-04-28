@@ -21,6 +21,7 @@ grep -i image: ${YAML_FILE}
 cat .git/config
 git config --global user.name "${GIT_USER}"
 git config --global user.email "${GIT_EMAIL}"
+git config --global --add safe.directory /github/workspace
 git add -A
 git diff --cached
 git commit -m "Pods Sirius Settings "${TAG}
